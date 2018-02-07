@@ -13,6 +13,7 @@ u.last_name = 'react'
 u.contact = '1234567890'
 u.password = '123qwe'
 u.password_confirmation = '123qwe'
+u.authentication_token = "admintoken"
 u.save
 puts 'Created Admin'
 
@@ -24,5 +25,6 @@ u.last_name = 'react'
 u.contact = '1234567890'
 u.password = '123qwe'
 u.password_confirmation = '123qwe'
+u.authentication_token = "usertoken"
 u.save
 puts 'Created User'

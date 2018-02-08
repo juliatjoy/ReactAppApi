@@ -4,7 +4,7 @@ class Api::V1::UsersController < Api::V1::ApplicationController
 
   def index
     @users = User.all
-    render json: {status: 200, message: "update Success", user: @users}
+    render json: {users: @users}
   end
 
   def update

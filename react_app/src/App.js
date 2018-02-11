@@ -1,30 +1,42 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+import $ from 'jquery'
 import './App.css';
 
 class App extends Component {
-
-  state = {users: []}
-
-  componentDidMount(){
-    fetch('/api/v1/users.json',{
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-    })
-     .map((res) => res.json())
-     .subscribe((posts) => {
-        console.log(posts);
-        this.list = posts;
-      }, (err) => {
-        console.log(err);
-      });
+  constructor(){
+    super();
+    this.state = {
+      users:[]
+    }
   }
+
+  fetchProject(){
+    axios.get('http://localhost:3001/api/v1/users.json')
+      .then((response)=>{
+        const {data} = response;
+        this.setState({
+          users: data
+        })
+      }).catch((error)=> {
+
+    });
+  }
+
   render() {
+    const {users} = this.state;
     return (
       <div className="App">
         <h1>Users1</h1>
-        {this.state.users.map(user =>
-          <div key={user.id}>{user.first_name}</div>
-        )}
+        {
+          users.map((item,index) =>{
+            return (<div className="portfolio__item" key={index}>
+              <div className="portfolio__image">
+                {item.first_name}
+              </div>
+            </div>)
+          })
+        }
       </div>
     );
   }
